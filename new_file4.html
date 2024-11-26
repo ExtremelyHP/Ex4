@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>山羊の前端小窝</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        section {
+            overflow-x: hidden;
+            block-size: 100%;
+        }
+
+        /* 设置 html 元素的纵向滚动方式为强制性的 */
+        html {
+            scroll-snap-type: y mandatory;
+        }
+
+        /* 设置 section 元素的滚动对齐方式为起始位置，并且始终停止滚动 */
+        section {
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        /* 设置.box的宽度为视口宽度，高度为视口高度，相对定位，显示为flex布局， 
+        溢出隐藏 */
+        .box {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            overflow: hidden;
+        }
+
+        /* 设置.box-block的绝对定位，顶部和左侧均为0，宽度和高度为100%， 
+        背景尺寸为120%，背景不重复，背景位置为中心顶部，使用3D变换， 
+        will-change属性为background-position */
+        .box-block {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: 120%;
+            background-repeat: no-repeat;
+            background-position: center 0;
+            transform: translate3d(0, 0, 0);
+            will-change: background-position;
+        }
+
+        /* 在最大宽度为1200px的媒体查询下，将.box-block的背景尺寸设置为150%， 
+        .box的高度设置为50vh */
+        @media (max-width:1200px) {
+            .box-block {
+                background-size: 150%;
+            }
+
+            .box {
+                height: 50vh;
+            }
+        }
+
+        /* 设置.box-block的伪元素::before的绝对定位，顶部和左侧均为0，内容为空， 
+        显示为块级元素， 宽度和高度为100%，背景颜色为rgba(0, 0, 0, 0.35)， 
+        背景颜色的过渡效果为0.3秒的ease过渡 */
+        .box-block::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            content: '';
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.35);
+            transition: background-color 0.3s ease;
+        }
+
+        /* 当鼠标悬停在.box上时，将.box-block的伪元素::before的 
+        背景颜色设置为rgba(0, 0, 0, 0.2) */
+        .box:hover .box-block::before {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+
+        /* 设置.box-text的相对定位，宽度和高度为100%，显示为flex布局， 
+        垂直居中和水平居中，主轴为纵向 */
+        .box-text {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            font-family: '优设标题黑';
+            color: #F1F1F1;
+        }
+
+        /* 设置.box-text内的.text-title的字体大小为24px， 
+        底部外边距为20px */
+        .box-text .text-title {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .box:nth-child(1n) .box-block {
+            background-image: url('./img/𝑷𝒍𝒂𝒚𝒈𝒓𝒐𝒖𝒏𝒅 𝑰𝒍𝒍𝒖𝒔𝒊𝒐𝒏 - ꧁ 𝑪𝒉𝒂𝒑𝒕𝒆𝒓 𝒇𝒊𝒗𝒆 ꧂.gif');
+        }
+
+        .box:nth-child(2n) .box-block {
+            background-image: url('./img/13.jpg');
+            background-position: 1000px 1100px;
+        }
+
+        .box:nth-child(3n) .box-block {
+            background-image: url('./img/20.jpg');
+        }
+
+        .box:nth-child(4n) .box-block {
+            background-image: url('./21.jpg');
+        }
+
+        .box:nth-child(5n) .box-block {
+            background-image: url('./26.jpg');
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="box">
+        <div class="box-block"></div>
+        <div class="box-text">
+            <div class="text-title">八月长安《暗恋》</div>
+            <div class="text-desc">每朵云都下落不明，每盏月亮都不知所踪。</div>
+        </div>
+    </section>
+
+    <section class="box">
+        <div class="box-block"></div>
+        <div class="box-text">
+            <div class="text-title">八月长安《暗恋》</div>
+            <div class="text-desc">每朵云都下落不明，每盏月亮都不知所踪。</div>
+        </div>
+    </section>
+
+    <section class="box">
+        <div class="box-block"></div>
+        <div class="box-text">
+            <div class="text-title">八月长安《暗恋》</div>
+            <div class="text-desc">每朵云都下落不明，每盏月亮都不知所踪。</div>
+        </div>
+    </section>
+
+    <section class="box">
+        <div class="box-block"></div>
+        <div class="box-text">
+            <div class="text-title">八月长安《暗恋》</div>
+            <div class="text-desc">每朵云都下落不明，每盏月亮都不知所踪。</div>
+        </div>
+    </section>
+
+    <section class="box">
+        <div class="box-block"></div>
+        <div class="box-text">
+            <div class="text-title">八月长安《暗恋》</div>
+            <div class="text-desc">每朵云都下落不明，每盏月亮都不知所踪。</div>
+        </div>
+    </section>
+
+    <script>
+
+        // 获取窗口的高度 
+        const wh = window.innerHeight;
+        // 监听窗口滚动事件 
+        const sectionBlock = Array.from(document.querySelectorAll('.box-block'));
+        // 获取所有class为section-item__block的元素，并将其转换为数组 
+        window.addEventListener('scroll', () => {
+            // 遍历sectionBlock数组中的每个元素
+            sectionBlock.forEach(el => {
+                // 获取元素相对于视口的位置信息，包括距离视口底部的距离（bottom）、
+                // 距离视口顶部的距离（top）和元素的高度（height）
+                const { bottom, top, height } = el.getBoundingClientRect();
+                // 如果元素完全位于视口之外，或者完全位于视口之上，则不进行任何操作
+                if (bottom <= 0 || top >= wh) return;
+                // 计算元素的背景位置的y坐标，根据滚动条的位置进行计算 
+                const y = document.documentElement.scrollTop * 0.5;
+                // 设置元素的背景位置 
+                el.style.backgroundPosition = `center -${y}px`;
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>
